@@ -1,0 +1,10 @@
+
+Raise your hand in front of the camera. The hand detection program will detect the movement of your fingers.
+To make the dinosaur jump in the game, raise four or five fingers on your hand. The program will automatically press the "Space" key, causing the dinosaur to jump in the game.
+
+
+
+Ensure that the Dino game window is active while using the hand detection program. Click on the game window to make it active before starting the hand detection program. ( if the camera freezes it probably means your activating the wrong window so just clicking on the dino game will fix the issue)
+
+
+To exit the hand detection program, press the 'Q' key on your keyboard. This will terminate the program and release the camera resources.
