@@ -8,11 +8,11 @@ cap = cv2.VideoCapture(0)
 cap.set(3, 1280)   # this is width
 cap.set(4, 720)    # this is height
 
-imgBackground = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/Background.png")
-imgGameOver = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/gameOver.png")
-imgBall = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/Ball.png", cv2.IMREAD_UNCHANGED)
-imgBat1 = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/bat1.png", cv2.IMREAD_UNCHANGED)
-imgBat2 = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/bat2.png", cv2.IMREAD_UNCHANGED)
+imgBackground = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/Background.png")
+imgGameOver = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/gameOver.png")
+imgBall = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/Ball.png", cv2.IMREAD_UNCHANGED)
+imgBat1 = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/bat1.png", cv2.IMREAD_UNCHANGED)
+imgBat2 = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/bat2.png", cv2.IMREAD_UNCHANGED)
 
 # hand detector
 detector = HandDetector(detectionCon=0.8, maxHands=2)
@@ -66,8 +66,16 @@ while True:
 
     if gameOver:
         img = imgGameOver
-        cv2.putText(img, str(score[1] + score[0]).zfill(2), (585, 360), cv2.FONT_HERSHEY_COMPLEX,
-                    2.5, (200, 0, 200), 5)
+        if ballPos[0] < 40:  # Player 2 wins
+            winner_text = "Player 2 Wins!"
+            score_display = str(score[1]).zfill(2)
+        else:  # Player 1 wins
+            winner_text = "Player 1 Wins!"
+            score_display = str(score[0]).zfill(2)
+
+        cv2.putText(img, winner_text, (400, 75), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 255), 5)
+        cv2.putText(img, score_display, (585, 360), cv2.FONT_HERSHEY_COMPLEX, 2.5, (200, 0, 200), 5)
+
 
     # if game not over move the ball
     else:
@@ -95,7 +103,7 @@ while True:
         speedY = 25
         gameOver = False
         score = [0, 0]
-        imgGameOver = cv2.imread("D:/mind cloud tasks/fair games/pong game/Resources/gameOver.png")
+        imgGameOver = cv2.imread("/home/abdelrahman-amgad/dev/MindCloud/Computer-Vision---Fair/pong game/Resources/gameOver.png")
     elif key == ord('q'):
         break
 
